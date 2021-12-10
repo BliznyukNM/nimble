@@ -20,5 +20,9 @@ task runtest, "Run particular test":
     for i in 9 .. paramCount(): executeTest(paramStr(i))
 
 
-task build_debug, "Build nimbok":
+task build_debug, "Build debug nimbok":
     exec ("nim c src/nimbok.nim")
+
+
+task build_release, "Build release nimbok":
+    exec ("nim c -d:release src/nimbok.nim")

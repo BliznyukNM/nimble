@@ -3,6 +3,7 @@ import macros
 
 template get* {.pragma.}
 template set* {.pragma.}
+template setget* {.pragma.}
 
 
 proc createGetter(identDef: NimNode, typeName: string): NimNode =
@@ -44,9 +45,14 @@ macro generate*[T](t: typedesc[T]): untyped =
   let typeImpl = t.getTypeInst[1].getImpl
 
   let getters = typeImpl.getPragmas("get")
-  for getter in getters: 
+  for getter in getters:
     result.add(createGetter(getter, typeImpl[0].strVal))
   
   let setters = typeImpl.getPragmas("set")
   for setter in setters:
     result.add(createSetter(setter, typeImpl[0].strVal))
+  
+  let setgets = typeImpl.getPragmas("setget")
+  for setget in setgets:
+    result.add(createGetter(setget, typeImpl[0].strVal))
+    result.add(createSetter(setget, typeImpl[0].strVal))

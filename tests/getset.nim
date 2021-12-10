@@ -14,13 +14,20 @@ type Test* = ref object
   a {.get.}: int
   b {.get, set.}: int
   c: int
-
+  d {.setget.}: float
 
 Test.generate
 
 
 test "getters and setters":
-    var t = Test(a: 2, b: 10)
-    assert t.a == 2
-    t.b = 3
-    assert t.b == 3
+  var t = Test(a: 2, b: 10)
+  assert t.a == 2
+  t.b = 3
+  assert t.b == 3
+
+
+test "setget":
+  var t = Test(d: 10.5)
+  assert t.d == 10.5
+  t.d = 0.34
+  assert t.d == 0.34
