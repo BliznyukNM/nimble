@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.0"
+version       = "0.0.3"
 author        = "Nikita Bliznyuk"
 description   = "Lombok for nim!"
 license       = "MIT"

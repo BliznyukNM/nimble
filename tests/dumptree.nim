@@ -1,7 +1,10 @@
 import macros
 
 dumpTree:
-  type Type* {.get.} = ref object
+  type A* = ref object
+  type B* {.setget.} = ref object
+
+  type Type* {.setget.} = ref object
     field {.getter, setter.}: float
     emptyField: int
 
